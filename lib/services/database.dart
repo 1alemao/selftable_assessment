@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:cat_holder/models/cat.dart';
 import 'package:cat_holder/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -10,39 +11,14 @@ import 'package:flutter/material.dart';
 */
 
 class CatHolderDatabase extends ChangeNotifier {
-  CatHolderDatabase() {
-    allCats = [
-      Cat(
-        name: 'Awesome cat',
-        description: 'very nice cat with cute ears',
-        imageAssetName: "assets/awesome_cat.png",
-      ),
-      Cat(
-        name: 'Regular cat',
-        description: 'regular cat with regular ears',
-        imageAssetName: "assets/regular_cat.jpg",
-      ),
-      Cat(
-        name: 'Bad cat',
-        description: 'not an exemplary cat',
-        imageAssetName: "assets/bad_cat.jpeg",
-      ),
-      Cat(
-        name: 'Not a cat',
-        description: 'this is definitely not a cat',
-        imageAssetName: "assets/not_a_cat.jpg",
-      ),
-      Cat(
-        name: 'Cursed cat',
-        description: 'you tell me what the hell is this',
-        imageAssetName: "assets/cursed_cat.jpeg",
-      ),
-    ];
-    featuredCats = [
-      allCats[3],
-      allCats[4],
-    ];
-  }
+  // The following streams are used for fetching cat data from Firestore
+  static Stream<QuerySnapshot> allCatsStream =
+      FirebaseFirestore.instance.collection('cats').snapshots();
+  static Stream<QuerySnapshot> featureCatsStream = FirebaseFirestore.instance
+      .collection('cats')
+      .where('featured', isEqualTo: true)
+      .snapshots();
+
   User? loggedInUser;
   List<Cat> allCats = [];
 

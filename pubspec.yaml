@@ -9,6 +9,8 @@ environment:
   sdk: ">=2.17.6 <3.0.0"
 
 dependencies:
+  cloud_firestore: ^3.4.5
+  firebase_core: ^1.21.0
   flutter:
     sdk: flutter
 
@@ -22,9 +24,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/awesome_cat.png
-    - assets/bad_cat.jpeg
-    - assets/cursed_cat.jpeg
-    - assets/not_a_cat.jpg
-    - assets/regular_cat.jpg

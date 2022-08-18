@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "14278167469",
+    "project_id": "catholder-a0a4b",
+    "storage_bucket": "catholder-a0a4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14278167469:android:87c062cb70e363aa24ef24",
+        "android_client_info": {
+          "package_name": "com.example.cat_holder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14278167469-2a7okjueng0cc8ug0rn8ogmo7klk27bv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBp4d9LqmrU18HNsPFtOKHimHr9CDNF_eU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14278167469-2a7okjueng0cc8ug0rn8ogmo7klk27bv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

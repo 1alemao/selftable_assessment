@@ -10,29 +10,17 @@ interaction (add to user's favorite cat list)
 */
 
 class CatCardWidget extends StatefulWidget {
-  const CatCardWidget(this.cat, {Key? key}) : super(key: key);
-  final Cat cat;
+  const CatCardWidget(
+    this.cat, {
+    Key? key,
+  }) : super(key: key);
+  final Cat? cat;
 
   @override
   State<CatCardWidget> createState() => _CatCardWidgetState();
 }
 
 class _CatCardWidgetState extends State<CatCardWidget> {
-  bool _shimmerEnabled = true;
-
-  @override
-  void initState() {
-    // The following block creates a 1500ms delay for simulating network loading
-    Future.delayed(const Duration(milliseconds: 1500)).then(
-      (value) => setState(
-        () {
-          _shimmerEnabled = false;
-        },
-      ),
-    );
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     // Listens to change in the current user for display the right interface
@@ -42,7 +30,7 @@ class _CatCardWidgetState extends State<CatCardWidget> {
     bool addedToUserList = currentUser.likedCats.contains(widget.cat);
 
     // Displays shimmer effect to simulate network loading data
-    return _shimmerEnabled
+    return widget.cat == null
         ? Shimmer.fromColors(
             baseColor: Colors.grey,
             highlightColor: Colors.grey[100]!,
@@ -76,7 +64,7 @@ class _CatCardWidgetState extends State<CatCardWidget> {
                   child: SizedBox(
                     width: 100,
                     height: 100,
-                    child: Image.asset(widget.cat.imageAssetName,
+                    child: Image.network(widget.cat!.pictureUrl,
                         fit: BoxFit.cover),
                   ),
                 ),
@@ -90,10 +78,10 @@ class _CatCardWidgetState extends State<CatCardWidget> {
                       //  Cat name & description
                       //
                       Text(
-                        widget.cat.name,
+                        widget.cat!.name,
                         style: Theme.of(context).textTheme.headline2,
                       ),
-                      Text(widget.cat.description),
+                      Text(widget.cat!.description),
                       //
                       // Only shows the add / remove button if user is authenticated
                       //
@@ -139,8 +127,8 @@ class _CatCardWidgetState extends State<CatCardWidget> {
                                       onPressed: () {
                                         // Add or remove according to user's favorite list content
                                         addedToUserList
-                                            ? currentUser.removeCat(widget.cat)
-                                            : currentUser.addCat(widget.cat);
+                                            ? currentUser.removeCat(widget.cat!)
+                                            : currentUser.addCat(widget.cat!);
                                       },
                                       child: Center(
                                         child: Text(

@@ -1,10 +1,16 @@
 import 'package:cat_holder/models/user.dart';
 import 'package:cat_holder/services/database.dart';
 import 'package:cat_holder/views/app_scaffold.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     // Will be using the Provider for handling database changes on this assessment
     MultiProvider(
